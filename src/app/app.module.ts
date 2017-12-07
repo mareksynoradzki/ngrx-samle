@@ -1,18 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {StoreModule} from '@ngrx/store';
+
+import {AppComponent} from './app.component';
+import {uiState} from './store/reducers/ui-state-reducer';
+import {INITIAL_APPLICATION_STATE} from './store/application-state';
 
 
-import { AppComponent } from './app.component';
-
+const reducers = {
+  uiState
+};
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    StoreModule.forRoot(reducers, {initialState: INITIAL_APPLICATION_STATE}),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
