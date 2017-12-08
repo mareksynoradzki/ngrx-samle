@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {ApplicationState} from './store/application-state';
 import {ThreadSelectedAction} from './store/actions';
+import {Thread} from './model/thread.m';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,12 @@ import {ThreadSelectedAction} from './store/actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  selectedThread$: Observable<number>
+  selectedThreadId$: Observable<number>
+  selectedThread$: Observable<Thread>;
 
   constructor(private store: Store<ApplicationState>) {
-    this.selectedThread$ = this.store.select(value => value.uiState.currentThreadId);
+    this.selectedThreadId$ = this.store.select(value => value.uiState.currentThreadId);
+    this.selectedThread$ = this.store.select(value => value.uiState.currentThread);
   }
 
   onChange(value: number) {

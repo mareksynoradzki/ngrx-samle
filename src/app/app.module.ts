@@ -5,6 +5,9 @@ import {StoreModule} from '@ngrx/store';
 import {AppComponent} from './app.component';
 import {uiState} from './store/reducers/ui-state-reducer';
 import {INITIAL_APPLICATION_STATE} from './store/application-state';
+import {LoadThreadEffect} from './store/effects/loadThread.effect';
+import {SampleHttpService} from './sample.htt-service';
+import {EffectsModule} from '@ngrx/effects';
 
 
 const reducers = {
@@ -18,8 +21,9 @@ const reducers = {
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers, {initialState: INITIAL_APPLICATION_STATE}),
+    EffectsModule.forRoot([LoadThreadEffect])
   ],
-  providers: [],
+  providers: [SampleHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
